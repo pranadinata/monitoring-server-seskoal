@@ -46,7 +46,7 @@ router.get("/qrHtml", async (req, res) => {
 });
 
 function sendQr(res) {
-    fs.readFile("components/last.qr", 'utf8',(err, last_qr) => {
+    fs.readFile("services/last.qr", 'utf8',(err, last_qr) => {
         if (!err && last_qr) {
             res.json(last_qr);
         }
@@ -54,7 +54,7 @@ function sendQr(res) {
 }
 
 function sendQrHtml(res) {
-    fs.readFile("components/last.qr", (err, last_qr) => {
+    fs.readFile("services/last.qr", (err, last_qr) => {
         if (!err && last_qr) {
             var page = `
                     <html>

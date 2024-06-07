@@ -6,12 +6,13 @@ const fs = require("fs");
 const axios = require("axios");
 const { Client, NoAuth  } = require("whatsapp-web.js");
 const qrcode = require('qrcode-terminal');
+const cors = require('cors');
 
 
 const app = express();
 const port = process.env.APP_PORT || 3300;
 
-
+app.use(cors());
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -42,6 +43,7 @@ client.on("ready", () => {
 });
 
 client.on("message", async (msg) => {
+    
     // GlobalFunction.StoreMessage(msg);
     if (config.webhook.enabled) {
         
@@ -66,11 +68,16 @@ client.initialize().catch(error => {
 });
 
 const authRoute = require("./services/auth");
+const chatRoute = require("./services/chatting");
+
 app.use("/auth", authRoute);
+app.use("/chat", chatRoute);
+
+const Router = require('./routes/route.module');
+app.use('/', Router);
 
 
-app.listen(port, () => {
-   
+app.listen(port,'0.0.0.0', () => {
     console.log("Server Running Live on Port : " + port);
 });
 
