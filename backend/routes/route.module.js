@@ -14,13 +14,11 @@ router.get('/', (req, res)=> {
 });
 
 router.group('/whatsapp', function (route) {
-    route.post('/post-temperature-humadity', arduinoController.getTemperatureAndHumadity);
-    route.post('/send-notify', arduinoController.sendNotifyToWhatsApp);
+    route.post('/get-temperature', arduinoController.getTemperature);
+    route.post('/get-humadity', arduinoController.getHumadity);
+
+    // route.post('/send-notify', arduinoController.sendNotifyToWhatsApp);
 });
-
-
-
-
 
 
 module.exports = router

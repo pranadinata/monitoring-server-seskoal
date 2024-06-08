@@ -5,12 +5,18 @@ module.exports = {
     await queryInterface.createTable('notifications', {
       id: {
         allowNull: false,
-        defaultValue: Sequelize.UUIDV4,
+        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.UUID,
+        type: Sequelize.INTEGER
       },
       whatsapp_chat_id: {
         type: Sequelize.STRING
+      },
+      temperature: {
+        type: Sequelize.FLOAT
+      },
+      humadity: {
+        type: Sequelize.FLOAT
       },
       fromMe: {
         type: Sequelize.BOOLEAN

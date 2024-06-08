@@ -38,25 +38,26 @@ client.on("auth_failure", () => {
     console.log("AUTH Failed !");
 });
 
-client.on("ready", () => {
+client.on("ready", (result) => {
     console.log("Client is ready!");
 });
 
 client.on("message", async (msg) => {
     
     // GlobalFunction.StoreMessage(msg);
-    if (config.webhook.enabled) {
+    // if (config.webhook.enabled) {
         
-        if (msg.hasMedia) {  
-            const attachmentData = await msg.downloadMedia();
-            msg.attachmentData = attachmentData;
-        }
-        axios.post(config.webhook.path, { msg });
-    }
+    //     if (msg.hasMedia) {  
+    //         const attachmentData = await msg.downloadMedia();
+    //         msg.attachmentData = attachmentData;
+    //     }
+    //     axios.post(config.webhook.path, { msg });
+    // }
 });
 
 client.on("disconnected", () => {
     console.log("disconnected");
+    process.exit(1);
 });
 
 client.on('loading_screen', (percent, message) => {

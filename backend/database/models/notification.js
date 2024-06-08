@@ -14,12 +14,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   notification.init({
-    id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      primaryKey: true,
-    },
+ 
     whatsapp_chat_id: DataTypes.STRING,
+    temperature: DataTypes.FLOAT,
+    humadity: DataTypes.FLOAT,
     fromMe: DataTypes.BOOLEAN,
     content: DataTypes.TEXT,
     type: DataTypes.STRING,
