@@ -19,8 +19,7 @@ router.get('/', (req, res)=> {
 
 router.group('/whatsapp', function (route) {
     route.post('/get-temperature', arduinoService.getTemperature);
-    route.post('/get-humadity', arduinoService.getHumadity);
-    // route.post('/send-notify', arduinoController.sendNotifyToWhatsApp);
+    route.post('/send-notify', arduinoService.sendWhatsapp);
 });
 
 router.group('/apps', function (route) {
@@ -30,6 +29,7 @@ router.group('/apps', function (route) {
     //get data from db
     route.get('/phone-book/show', getDataService.getPhoneBook);
     route.get('/sensor-detail/show', getDataService.getSensorDetail);
+    
 
 });
 
