@@ -48,6 +48,9 @@
       ],
       "@helpers/*": [
         "src/helpers/*"
+      ],
+      "@services/*": [
+        "src/services/*"
       ]
     },
   },

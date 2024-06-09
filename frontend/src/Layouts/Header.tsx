@@ -10,7 +10,7 @@ import SimpleBar from "simplebar-react";
 import { menuItems } from "./MenuData";
 import NestedMenu from "./NestedMenu";
 import { Dropdown } from "react-bootstrap";
-import logoSeskoal from "@assets/images/seskoal.png";
+import logoInfolahta from "@assets/images/infolahta.png";
 import Style from "styled-jsx/style";
 
 const Header = ({ themeMode }: any) => {
@@ -25,14 +25,14 @@ const Header = ({ themeMode }: any) => {
     <React.Fragment>
       <nav className="pc-sidebar" id="pc-sidebar-hide">
         <div className="navbar-wrapper">
-          <div className="m-header" style={{ 'height': '15vh' }}>
-            <center>
+          <center>
+          <div className="m-header" style={{ 'height': '18vh' }}>
             <Link href="/" className="b-brand text-primary">
-              <Image src={logoSeskoal.src} width={150} height={100} alt="logo" className="logo-xl landing-logo" />
-            </Link>
-            </center>
-            
+                <Image src={logoInfolahta.src} width={150} height={150} alt="logo" className="logo-xl landing-logo" />
+              </Link>
           </div>
+          </center>
+          
           {/* <div className="navbar-content"> */}
           <SimpleBar className="navbar-content" style={{ maxHeight: "100vh" }}>
             <ul className="pc-navbar" id="pc-navbar">

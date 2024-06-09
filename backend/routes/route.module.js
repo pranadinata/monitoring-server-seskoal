@@ -3,7 +3,11 @@ const express = require('express');
 
 const router = express.Router();
 
-const arduinoController = require('../services/micro-controller/arduino.controller');
+const arduinoService = require('../services/micro-controller/arduino.controller');
+const authService = require('../services/apps/auth.controller');
+const getDataService = require('../services/apps/getData.controller');
+
+
 
 
 router.get('/', (req, res)=> {
@@ -14,11 +18,19 @@ router.get('/', (req, res)=> {
 });
 
 router.group('/whatsapp', function (route) {
-    route.post('/get-temperature', arduinoController.getTemperature);
-    route.post('/get-humadity', arduinoController.getHumadity);
-
+    route.post('/get-temperature', arduinoService.getTemperature);
+    route.post('/get-humadity', arduinoService.getHumadity);
     // route.post('/send-notify', arduinoController.sendNotifyToWhatsApp);
 });
+
+router.group('/apps', function (route) {
+    route.post('/auth/login', authService.postLogin);
+
+
+    //get data from db
+    route.get('/phone-book/show', getDataService.getPhoneBook);
+});
+
 
 
 module.exports = router

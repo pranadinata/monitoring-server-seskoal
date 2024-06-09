@@ -3,7 +3,7 @@ const { phone_book: PhoneBook, notification: Notification , suhu_humadity: SuhuH
 
 
 function getTemperature(req, res){
-    SetNotif.findOne();
+    
     SuhuHumadity.findAll({order: [
         ['id', 'ASC'], // Sorts by COLUMN_NAME_EXAMPLE in ascending order
   ]}).then(async (result)=>{
@@ -27,7 +27,6 @@ function getHumadity(req, res) {
         ]}).then(async (result)=>{
         let currentHumadity = parseFloat(req.body.Kelembapan);
         if(currentHumadity >= result[1].value){
-
             let allPhone = await PhoneBook.findAll();
             allPhone.forEach(async element => {
                 if(element.status == true){

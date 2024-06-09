@@ -13,8 +13,13 @@ const Login = async (username, password) => {
     }
 }
 
-const AuthService = {
-    Login,
+const getPhoneBook = async () => {
+    const response = await axios.get(process.env.NEXT_PUBLIC_BASE_API + 'apps/phone-book/show');
+    return response.data.data
+}
+
+const GetDataService = {
+    getPhoneBook,
 };
-export default AuthService;
+export default GetDataService;
 
