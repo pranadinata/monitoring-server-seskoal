@@ -1,5 +1,5 @@
 
-const { phone_book: PhoneBook, notification: Notification , suhu_humadity: SuhuHumadity ,set_notif: SetNotif} = require('../../database/models');
+const { phone_book: PhoneBook, notification: Notification , suhu_humadity: SuhuHumadity ,set_notif: SetNotif, sensor_check: SensorCheck} = require('../../database/models');
 
 
 function getTemperature(req, res){
@@ -7,7 +7,7 @@ function getTemperature(req, res){
     SuhuHumadity.findAll({order: [
         ['id', 'ASC'], // Sorts by COLUMN_NAME_EXAMPLE in ascending order
   ]}).then(async (result)=>{
-        
+
         
         // let currentTemp = parseFloat(req.body.Temperature);
         // let currentKelembapan = parseFloat(req.body.Kelembapan);
@@ -19,6 +19,7 @@ function getTemperature(req, res){
         let server_name = req.body.Id
 
         if(req.body.Temperature >= result[0].value || req.body.Temperature >= result[1].value){
+            processSaveData(server_name, currentTemp.suhu, currentTemp.kelembapan);
 
             let allPhone = await PhoneBook.findAll();
             allPhone.forEach(async element => {
@@ -38,7 +39,15 @@ function getTemperature(req, res){
 
 // -IOT Infolahta Seskoal-
 
-
+function processSaveData(sensor_id, suhu, kelembapan){
+    SensorCheck.create({
+                    id_sensor: sensor_id,
+                    temperature: suhu,
+                    kelembapan: kelembapan,
+                }).then(()=>{
+                    console.log({message: 'success save db'})
+                });
+}
 
 function processSendWhatsApp(phone, nama, curTemp, namaServer) {
 
