@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body data-pc-preset="preset-1" data-pc-sidebar-theme="dark" data-pc-sidebar-caption="true" data-pc-direction="ltr" data-pc-theme="dark">{children}</body>
+      <body data-pc-preset="preset-1" data-pc-sidebar-theme="dar" data-pc-sidebar-caption="true" data-pc-direction="ltr" data-pc-theme="dark">{children}</body>
     </html>
   )
 }

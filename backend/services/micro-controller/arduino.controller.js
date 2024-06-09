@@ -16,7 +16,7 @@ function getTemperature(req, res){
             'kelembapan': parseFloat(req.body.Kelembapan)
         };
 
-        let server_name = req.body.id
+        let server_name = req.body.Id
 
         if(req.body.Temperature >= result[0].value || req.body.Temperature >= result[1].value){
 
@@ -41,9 +41,11 @@ function getTemperature(req, res){
 
 
 function processSendWhatsApp(phone, nama, curTemp, namaServer) {
-    let message = `${namaSensor} di alat ${namaServer} saat ini ${curTemp}°C. Segera cek ruangan server infolahta seskoal.\n\n-IOT Infolahta Seskoal-`;
+
+
+    let message = `Data di alat ${namaServer} saat ini : \n Temperatur : *${curTemp.suhu}* °C \n Kelembapan : *${curTemp.kelembapan}* %H \n\n Segera cek ruangan server infolahta seskoal. \n\n -IOT Infolahta Seskoal-`;
     
-    return new Promise((resolve, reject) => {
+    // return new Promise((resolve, reject) => {
         client.sendMessage(`${phone}@c.us`, message).then((response) => {
             if (response.id.fromMe) {
                 // curTemp.forEach(element => {
@@ -67,7 +69,7 @@ function processSendWhatsApp(phone, nama, curTemp, namaServer) {
                 console.log('success send');
             }
         });
-    });
+    // });
   }
 
 function sendWhatsapp(req, res) {
@@ -79,4 +81,4 @@ function sendWhatsapp(req, res) {
             res.json('berhasil');
     });
 }
-module.exports = { getTemperature , sendWhatsapp }
+module.exports = { getTemperature , sendWhatsapp  }
