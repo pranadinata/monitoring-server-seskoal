@@ -24,9 +24,14 @@ function getTemperature(req, res) {
         };
 
         let server_name = req.body.Id
+        try {
+            processSaveData(server_name, currentTemp.suhu, currentTemp.kelembapan);
+        }catch (e) {
+            //
+        }
 
         if (req.body.Temperature >= result[0].value || req.body.Temperature >= result[1].value) {
-            processSaveData(server_name, currentTemp.suhu, currentTemp.kelembapan);
+
 
             let allPhone = await PhoneBook.findAll();
             allPhone.forEach(async element => {
@@ -34,9 +39,9 @@ function getTemperature(req, res) {
                     result = await processSendWhatsApp(element.no_hp, element.nama, currentTemp, server_name);
                 }
             });
-            res.json('Berhasil mengirim pesan suhu');
         }
 
+        res.json('Berhasil mengirim pesan suhu');
     });
 }
 
