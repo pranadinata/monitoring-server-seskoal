@@ -16,6 +16,13 @@ module.exports = {
           status: true,
           createdAt: new Date(),
           updatedAt: new Date()
+        },
+        {
+          nama: 'Pa Zein',
+          no_hp: '6281210000959',
+          status: true,
+          createdAt: new Date(),
+          updatedAt: new Date()
         }], {});
   },
 

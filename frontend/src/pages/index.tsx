@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 const Index = () => {
   const router = useRouter();
   useEffect(() => {
-    router.push("/dashboard");
+    router.push("/login");
   }, [router]);
 };
 

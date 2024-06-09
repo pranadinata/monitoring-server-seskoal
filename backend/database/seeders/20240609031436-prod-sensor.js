@@ -3,18 +3,15 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('suhu_humadities', [{
-      nama: 'Temperature',
-      value: 40,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },
-    {
-      nama: 'Kelembapan',
-      value: 50,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    }], {});
+    /**
+     * Add seed commands here.
+     *
+     * Example:
+     * await queryInterface.bulkInsert('People', [{
+     *   name: 'John Doe',
+     *   isBetaMember: false
+     * }], {});
+    */
   },
 
   async down (queryInterface, Sequelize) {

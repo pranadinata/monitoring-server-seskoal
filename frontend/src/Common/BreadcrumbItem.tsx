@@ -12,7 +12,7 @@ const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({ mainTitle, subTitle }) 
   return (
     <React.Fragment>
     <Head>
-      <title>{subTitle} | Light Able NextJs Dashboard Template</title>
+      <title>{subTitle} | Monitoring Server Seskoal</title>
     </Head>
     <div className="page-header">
       <div className="page-block">

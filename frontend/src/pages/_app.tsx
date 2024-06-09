@@ -44,7 +44,7 @@ const MyApp: any = ({ Component, pageProps, ...rest }: AppPropsWithLayout) => {
   return (
     <>
       <Head>
-        <link rel='icon' href='/favicon.svg' />
+        <link rel='icon' href='./seskoal.png' />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"

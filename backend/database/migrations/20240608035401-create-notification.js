@@ -12,10 +12,10 @@ module.exports = {
       whatsapp_chat_id: {
         type: Sequelize.STRING
       },
-      temperature: {
-        type: Sequelize.FLOAT
+      nama_sensor: {
+        type: Sequelize.STRING
       },
-      humadity: {
+      value_sensor: {
         type: Sequelize.FLOAT
       },
       fromMe: {

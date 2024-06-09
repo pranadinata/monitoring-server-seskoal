@@ -1,9 +1,12 @@
 
-const { phone_book: PhoneBook, notification: Notification , suhu_humadity: SuhuHumadity } = require('../../database/models');
+const { phone_book: PhoneBook, notification: Notification , suhu_humadity: SuhuHumadity ,set_notif: SetNotif} = require('../../database/models');
 
 
 function getTemperature(req, res){
-    SuhuHumadity.findAll().then(async (result)=>{
+    SetNotif.findOne();
+    SuhuHumadity.findAll({order: [
+        ['id', 'ASC'], // Sorts by COLUMN_NAME_EXAMPLE in ascending order
+  ]}).then(async (result)=>{
         let currentTemp = parseFloat(req.body.Temperature);
         if(currentTemp >= result[0].value){
 
@@ -13,13 +16,15 @@ function getTemperature(req, res){
                     result = await processSendWhatsApp(element.no_hp, element.nama, currentTemp, result[0].value, result[0].nama);
                 }
             });
-            res.json('Berhasil mengirim pesan');
+            res.json('Berhasil mengirim pesan Temperature');
         }
     });
 }
 
 function getHumadity(req, res) {
-    SuhuHumadity.findAll().then(async (result)=>{
+    SuhuHumadity.findAll({order: [
+            ['id', 'ASC'], // Sorts by COLUMN_NAME_EXAMPLE in ascending order
+        ]}).then(async (result)=>{
         let currentHumadity = parseFloat(req.body.Kelembapan);
         if(currentHumadity >= result[1].value){
 
@@ -29,7 +34,7 @@ function getHumadity(req, res) {
                     result = await processSendWhatsApp(element.no_hp, element.nama, currentHumadity, result[1].value,  result[1].nama);
                 }
             });
-            res.json('Berhasil mengirim pesan');
+            res.json('Berhasil mengirim pesan Kelembapan');
         }
     });
     
@@ -37,8 +42,8 @@ function getHumadity(req, res) {
 
 
 
-function processSendWhatsApp(phone, nama, curTemp, datTemp, nama_sensor) {
-    let message = nama_sensor +" Saat Ini " + curTemp + " dan batas maksimal nya adalah " + datTemp
+function processSendWhatsApp(phone, nama, curTemp, datTemp, namaSensor) {
+    let message = namaSensor +" Saat Ini " + curTemp + "°C dan batas maksimal nya adalah " + datTemp +" °C"
 
     return new Promise((resolve, reject) => {
         client.sendMessage(`${phone}@c.us`, message).then((response) => {
@@ -46,8 +51,8 @@ function processSendWhatsApp(phone, nama, curTemp, datTemp, nama_sensor) {
             if (response.id.fromMe) {
                 Notification.create({
                     whatsapp_chat_id: response._data.id.id,
-                    temperature: 10,
-                    humadity: 10,
+                    nama_sensor: namaSensor,
+                    value_sensor: curTemp,
                     fromMe: true,
                     content: response._data.body,
                     type: response._data.type,
