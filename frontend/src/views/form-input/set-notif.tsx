@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useState } from "react";
 import { Card, Col, Dropdown, Row } from "react-bootstrap";
 import Image from "next/image";
 
-import Arduino from "@assets/images/arduino/arduino.png";
+import avatar1 from "@assets/images/user/avatar-1.jpg";
 
 import getDataService from "@services/setting/get-data.module";
 interface PhoneContact {
@@ -19,7 +19,7 @@ const PhoneContact = () => {
   }, []);
   return (
     <>
-      <Col md={6} xl={8}>
+      <Col md={6} xl={4}>
         <Card className="table-card">
           <Card.Header className="d-flex align-items-center justify-content-between">
             <h4>Daftar Penerima Notif</h4>
@@ -47,7 +47,7 @@ const PhoneContact = () => {
                         <td>
                           <div className="d-inline-block align-middle">
                             <Image
-                              src={Arduino}
+                              src={avatar1}
                               alt="user image"
                               className="img-radius align-top m-r-15"
                               width="40"

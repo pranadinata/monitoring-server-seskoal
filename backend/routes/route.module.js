@@ -29,6 +29,8 @@ router.group('/apps', function (route) {
 
     //get data from db
     route.get('/phone-book/show', getDataService.getPhoneBook);
+    route.get('/sensor-detail/show', getDataService.getSensorDetail);
+
 });
 
 
