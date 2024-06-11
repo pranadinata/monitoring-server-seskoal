@@ -15,9 +15,11 @@ const ChatSlice = createSlice({
         },
         getuserChat: (state: any, action: any) => {
             state.userChat = action.payload;
+            console.log("action.payload", action.payload)
         },
         onAddMessage: (state: any, action: any) => {
-            state.userChat?.map((i: any) => i.userData.push(action.payload));
+            console.log("action.payload--->", action.payload,state.userChat)
+            state.userChat.userData?.map((i: any) => i.userData.push(action.payload));
         },
         onDeleteMessage: (state: any, action: any) => {
             state.userChat = (state.userChat || []).map((data: any) => {

@@ -101,7 +101,7 @@ const TopBar = ({ handleOffcanvasToggle, changeThemeMode, toogleSidebarHide, too
                                                             <Image src={avatar2} alt="user-image" width={50} className="wid-50 rounded-circle" />
                                                         </div>
                                                         <div className="flex-grow-1 mx-3">
-                                                            <h5 className="mb-0">Carson Darrin</h5>
+                                                            <h5 className="mb-0">Adminstrator</h5>
                                                             {/* <a className="link-primary" href="mailto:carson.darrin@company.io">carson.darrin@company.io</a> */}
                                                         </div>
                                                         <span className="badge bg-primary">Admin</span>

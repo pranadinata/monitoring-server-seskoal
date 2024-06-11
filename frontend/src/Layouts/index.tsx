@@ -104,7 +104,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   ]);
 
   useEffect(()=>{
-    changeThemeMode('dark');
+    changeThemeMode('DARK');
   });
 
   const [isLayoutWidth, setLayoutWidth] = useState(false);

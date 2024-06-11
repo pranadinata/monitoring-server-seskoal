@@ -1,22 +1,33 @@
+"use client";
 import React, { ReactElement, useEffect, useState } from "react";
-import { Card, Col, Dropdown, Row } from "react-bootstrap";
+import { Button, Card, Col, Dropdown, Form, Modal, Row } from "react-bootstrap";
 import Image from "next/image";
 
-import Arduino from "@assets/images/arduino/arduino.png";
+import avatar1 from "@assets/images/user/avatar-1.jpg";
 
 import getDataService from "@services/setting/get-data.module";
+
+import internal from "stream";
 interface PhoneContact {
-  nama: string,
-  no_hp: string,
-  status: boolean
+  id: number;
+  nama: string;
+  no_hp: string;
+  status: boolean;
 }
-const PhoneContact = () => {
+const PhoneBook = () => {
+  const [show, setShow] = useState(false);
   const [PhoneBook, setPhoneBook] = useState<PhoneContact[]>([]);
   useEffect(() => {
     getDataService.getPhoneBook().then((result) => {
       setPhoneBook(result.data);
     });
   }, []);
+
+  const handleClose = () => setShow(false);
+  const handleShow = (item: any) => {
+
+    setShow(true);
+  };
   return (
     <>
       <Col md={6} xl={8}>
@@ -32,8 +43,9 @@ const PhoneContact = () => {
                 <i className="material-icons-two-tone f-18">more_vert</i>
               </Dropdown.Toggle>
               <Dropdown.Menu className="dropdown-menu-end">
-                <Dropdown.Item href="#">View</Dropdown.Item>
-                <Dropdown.Item href="#">Edit</Dropdown.Item>
+                <Dropdown.Item href="#" onClick={handleShow}>
+                  Tambah Data
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </Card.Header>
@@ -41,13 +53,13 @@ const PhoneContact = () => {
             <div className="table-responsive">
               <table className="table table-hover table-borderless table-sm mb-0">
                 <tbody>
-                  { PhoneBook?.map((item, index) => {
+                  {PhoneBook?.map((item, index) => {
                     return (
-                      <tr>
+                      <tr key={index}>
                         <td>
                           <div className="d-inline-block align-middle">
                             <Image
-                              src={Arduino}
+                              src={avatar1}
                               alt="user image"
                               className="img-radius align-top m-r-15"
                               width="40"
@@ -59,16 +71,23 @@ const PhoneContact = () => {
                           </div>
                         </td>
                         <td>
-                          <div role="alert" className={ item?.status == true ? 'alert alert-success' : 'alert alert-danger'}>
+                          <div
+                            role="alert"
+                            className={
+                              item?.status == true
+                                ? "alert alert-success"
+                                : "alert alert-danger"
+                            }
+                          >
                             <span>+ {item?.no_hp} </span>
                           </div>
                         </td>
                         <td className="text-end">
                           <button className="btn avtar avtar-xs btn-light-danger me-1">
-                            <i className="ti ti-x"></i>
+                            <i className="ti ti-trash"></i>
                           </button>
-                          <button className="btn avtar avtar-xs btn-light-success">
-                            <i className="ti ti-check"></i>
+                          <button className="btn avtar avtar-xs btn-light-info">
+                            <i className="ti ti-pencil"></i>
                           </button>
                         </td>
                       </tr>
@@ -80,8 +99,54 @@ const PhoneContact = () => {
           </Card.Body>
         </Card>
       </Col>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Tambah Data Kontak</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form.Group as={Col}>
+            <Form.Label>
+              <strong>
+                Nama Lengkap<span>*</span>
+              </strong>
+            </Form.Label>
+            <Form.Control
+              required
+              type="text"
+              placeholder="Nama Lengkap"
+              name="nama_lengkap"
+              // value={inputs.namaAppClient}
+              // onChange={handleInputChange}
+            />
+          </Form.Group>
+          <br />
+          <Form.Group as={Col}>
+            <Form.Label>
+              <strong>
+                Nomer HP <span>*</span>
+              </strong>
+            </Form.Label>
+            <Form.Control
+              required
+              type="text"
+              placeholder="62872xxxxxxx"
+              name="nama_lengkap"
+              // value={inputs.namaAppClient}
+              // onChange={handleInputChange}
+            />
+          </Form.Group>
+        </Modal.Body>
+        <Modal.Footer>
+          {/* <Button variant="secondary" onClick={handleClose}>
+            Keluar
+          </Button> */}
+          <Button variant="primary" onClick={handleClose}>
+            Simpan
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };
 
-export default PhoneContact;
+export default PhoneBook;

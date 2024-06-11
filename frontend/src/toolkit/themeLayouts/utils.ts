@@ -20,7 +20,7 @@ import {
 } from "../../Common/layoutConfig";
 
 interface ThemeState {
-    themeMode: THEME_MODE.LIGHT | THEME_MODE.DARK | THEME_MODE.DEFAULT;
+    themeMode: THEME_MODE.DARK | THEME_MODE.DARK | THEME_MODE.DEFAULT;
     layoutTheme: LAYOUT_THEME.VERTICAL | LAYOUT_THEME.HORIZONTAL;
     themePreset:
     THEME_PRESET.PRESET_1 |

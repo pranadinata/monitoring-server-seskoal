@@ -51,6 +51,9 @@
       ],
       "@services/*": [
         "src/services/*"
+      ],
+      "@toolkit/*": [
+        "src/toolkit/*"
       ]
     },
   },
