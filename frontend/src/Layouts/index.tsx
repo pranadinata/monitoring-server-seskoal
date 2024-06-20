@@ -8,6 +8,8 @@ import RightCustomizer from "./RightCustomizer";
 import { changeLayoutTheme, changeSidebarTheme, changeSidebarThemeCaptions } from "src/toolkit/themeLayouts/thunk";
 import { createSelector } from "reselect";
 import HorizontalLayout from "./HorizontalLayout";
+import { useRouter } from "next/router";
+import { getCookie } from "cookies-next";
 
 interface LayoutProps {
   children: ReactNode;
@@ -103,9 +105,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     dispatch
   ]);
 
-  useEffect(()=>{
-    changeThemeMode('DARK');
-  });
+ 
 
   const [isLayoutWidth, setLayoutWidth] = useState(false);
 

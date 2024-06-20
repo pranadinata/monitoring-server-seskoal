@@ -3,7 +3,7 @@
    "username": "postgres",
     "password": "admin123",
     "database": "monitoring_server_seskoal",
-    "host": "172.16.10.16",
+    "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {

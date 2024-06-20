@@ -38,8 +38,7 @@ const Loginv1 = () => {
       
     const processLogin = async () =>{
             await AuthService.Login(username, password).then((response)=>{
-                console.log(response);
-                // router.push("/dashboard");
+                router.push("/dashboard");
             }).catch((error)=>{
                 if (error?.response?.status === 429) {
                     // setIsRequredCaptcha(error?.response?.data?.data?.isRequiredCaptcha);
@@ -111,7 +110,7 @@ return (
                 <hr className="mb-3 mt-4" />
                 <Row>
                     <div className="col my-1 text-center">
-                        <p className="m-0">Light Able ♥ crafted by Team <a href="#" target="_blank"> YP & CRP</a></p>
+                        <p className="m-0">crafted by Team <a href="#" target="_blank"> YP & CRP</a></p>
                     </div>
                 </Row>
             </div>

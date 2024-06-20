@@ -11,9 +11,6 @@ interface BreadcrumbItemProps {
 const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({ mainTitle, subTitle }) => {
   return (
     <React.Fragment>
-    <Head>
-      <title>{subTitle} | Monitoring Server Seskoal</title>
-    </Head>
     <div className="page-header">
       <div className="page-block">
         <Row className="row align-items-center">

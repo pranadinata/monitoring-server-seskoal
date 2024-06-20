@@ -1,15 +1,19 @@
 import { THEME_MODE } from "@common/layoutConfig";
 import Link from "next/link";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Dropdown } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import SimpleBar from "simplebar-react";
 
 //import images
 import avatar1 from "@assets/images/user/avatar-1.jpg";
 import avatar2 from "@assets/images/user/avatar-2.jpg";
 import avatar3 from "@assets/images/user/avatar-3.jpg";
+
+import { deleteCookie, getCookie } from "cookies-next";
+
 
 interface HeaderProps {
     themeMode?: string; // Define the type for themeMode
@@ -20,6 +24,19 @@ interface HeaderProps {
 }
 
 const TopBar = ({ handleOffcanvasToggle, changeThemeMode, toogleSidebarHide, toogleMobileSidebarHide }: HeaderProps) => {
+    const router = useRouter();
+
+   
+  
+  // const [isLogin, setIsLogin] = useState(false);
+
+  useEffect(()=> {
+      const token = getCookie("monitoring-server-infolahta");
+      if(!token){
+        // console.log(token)
+        router.push("/login");
+      }
+  });
 
     const dispatch = useDispatch<any>();
     // Function to handle theme mode change
@@ -37,6 +54,15 @@ const TopBar = ({ handleOffcanvasToggle, changeThemeMode, toogleSidebarHide, too
 
     const closeDropdown = () => {
         setDropdownOpen(false);
+    };
+    const LogoutApps = () => {
+       console.log('masuk kesini');
+
+        deleteCookie('monitoring-server-infolahta');
+        router.push("/login");
+    
+    //    console.log('masuk kesini');
+
     };
     return (
         <React.Fragment>
@@ -120,7 +146,9 @@ const TopBar = ({ handleOffcanvasToggle, changeThemeMode, toogleSidebarHide, too
                                                     <Dropdown.Item>
                                                         <span className="d-flex align-items-center">
                                                             <i className="ph-duotone ph-power"></i>
-                                                            <span>Logout</span>
+                                                            <span onClick={()=>{
+                                                                LogoutApps();
+                                                            }} >Logout</span>
                                                         </span>
                                                     </Dropdown.Item>
                                                 </li>
