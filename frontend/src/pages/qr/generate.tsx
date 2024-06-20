@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const GenerateQr = () => {
     const RestartService = async ()=>{
-            const AxiosInstance = await axios.post("http://127.0.0.1:3001/run-script");
+            const AxiosInstance = await axios.post(process.env.NEXT_PUBLIC_SERVICE_API + "run-script");
             console.log(AxiosInstance)
             
     }
