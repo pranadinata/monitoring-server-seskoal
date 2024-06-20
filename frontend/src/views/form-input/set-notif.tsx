@@ -32,17 +32,16 @@ const PhoneContact = () => {
           <Card.Body>
             <div className="d-flex align-items-center justify-content-between mb-2">
               <p className="mb-0">Max Suhu</p>
-              <button className="btn btn-secondary">Ubah data suhu</button>
+              <button className="btn btn-secondary">Edit</button>
             </div>
             <h5 className="mb-0">80 °C</h5>
-            
           </Card.Body>
         </Card>
         <Card>
           <Card.Body>
             <div className="d-flex align-items-center justify-content-between mb-2">
               <p className="mb-0">Max Kelembapan</p>
-              <button className="btn btn-secondary">Ubah data kelembapan</button>
+              <button className="btn btn-secondary">Edit</button>
             </div>
             <div className="d-flex align-items-center">
               <h5 className="mb-0">50 %H</h5>

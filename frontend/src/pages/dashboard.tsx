@@ -25,7 +25,6 @@ const Dashboard = () => {
           <Row>
             <PhoneBook></PhoneBook>
             <SetNotif></SetNotif>
-
           </Row>
         
         </React.Fragment>

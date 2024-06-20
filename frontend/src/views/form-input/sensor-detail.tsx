@@ -41,7 +41,7 @@ const sensorDetail = () => {
   };
 
   const handleInputChange = (event: any) =>{
-      console.log(event.target.vakue)
+      console.log(event.target.value)
   }
 
   const convertDate = (waktu: Date) => {
@@ -80,7 +80,7 @@ const sensorDetail = () => {
               <Card className="user-card">
                 <Card.Body>
                   <div className="user-cover-bg">
-                    <Image src={Arduino} alt="image" className="img-fluid" />
+                    <img src={Arduino.src} alt="image" className="img-fluid" />
                     <div className="cover-data">
                       <div className="d-inline-flex align-items-center"></div>
                     </div>

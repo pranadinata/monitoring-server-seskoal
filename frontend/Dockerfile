@@ -1,21 +1,10 @@
-FROM node:21.7.3-alpine3.20
-
-#membuat work directory
+FROM node:20.13.0-alpine3.19
 RUN mkdir -p /opt/app/nextjs
-
-#menyalin work directory
 WORKDIR /opt/app/nextjs
 COPY frontend/package.json .
-
-#menginstall node_modules pada directory 
 RUN npm install
-
-# Menyalin seluruh file backend
 COPY frontend . /opt/app/nextjs/
-
-#expose port 3100 
 EXPOSE 3100
-
-#build frontend apps 
 RUN npm run build
 CMD ["npm", "start"]
+
