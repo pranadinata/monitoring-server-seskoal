@@ -8,6 +8,8 @@ const { Client, NoAuth  } = require("whatsapp-web.js");
 const qrcode = require('qrcode-terminal');
 const cors = require('cors');
 
+const arduinoService = require('./services/micro-controller/arduino.controller');
+
 
 const app = express();
 const port = process.env.APP_PORT || 3300;
@@ -40,6 +42,7 @@ client.on("auth_failure", () => {
 });
 
 client.on("ready", (result) => {
+    arduinoService.sendWhatsapp();
     console.log("Client is ready!");
 });
 

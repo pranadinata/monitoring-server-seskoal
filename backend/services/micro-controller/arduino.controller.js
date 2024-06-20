@@ -8,6 +8,7 @@ const {
 
 
 function getTemperature(req, res) {
+  
 
     SuhuHumadity.findAll({
         order: [
@@ -32,7 +33,7 @@ function getTemperature(req, res) {
 
         if (req.body.Temperature >= result[0].value || req.body.Temperature >= result[1].value) {
 
-
+            console.log('lebih besar');
             let allPhone = await PhoneBook.findAll();
             allPhone.forEach(async element => {
                 if (element.status == true) {
@@ -92,14 +93,15 @@ function processSendWhatsApp(phone, nama, curTemp, namaServer) {
     // });
 }
 
-function sendWhatsapp(req, res) {
-    let temperature = 80;
-    let phone = "6285721330911";
-    let message = `Temperatur saat ini ${temperature}°C. Segera cek ruangan server infolahta seskoal.\n\n-IOT Infolahta Seskoal-`;
-
-    client.sendMessage(`${phone}@c.us`, message).then((response) => {
-        res.json('berhasil');
+function sendWhatsapp() {
+    let message = `Connected`;
+    PhoneBook.findAll({where: {status: true}}).then((element)=>{
+        client.sendMessage(`${element.no_hp}@c.us`, message).then((response) => {
+            console.log('berhasil');
+            // res.json('berhasil');
+        });
     });
+    
 }
 
 module.exports = {getTemperature, sendWhatsapp}
