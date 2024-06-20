@@ -10,9 +10,16 @@ const getSensorDetail = async () => {
     const response = await axios.get(process.env.NEXT_PUBLIC_BASE_API + 'apps/sensor-detail/show');
     return response.data.data
 }
+
+const getSuhuHumadity = async () => {
+    const response = await axios.get(process.env.NEXT_PUBLIC_BASE_API + 'apps/suhu-humadity/show');
+    return response.data.data
+}
+
 const GetDataService = {
     getPhoneBook,
-    getSensorDetail
+    getSensorDetail,
+    getSuhuHumadity
 };
 export default GetDataService;
 

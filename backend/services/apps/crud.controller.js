@@ -1,5 +1,5 @@
 const { where } = require('sequelize');
-const { phone_book , notification: Notification , sensor_detail: SensorDetails ,set_notif: SetNotif} = require('../../database/models');
+const { phone_book , suhu_humadity , sensor_detail ,set_notif} = require('../../database/models');
 
 function createPhoneBook(req, res){
 
@@ -62,7 +62,55 @@ function updatePhoneBook(req, res){
        });
     }   
   });
-  // res.json(req.body);
 }
 
-module.exports = { createPhoneBook , deletePhoneBook, updatePhoneBook}
+function updateSensorDetail(req, res){
+  const { id, deskripsi } = req.body 
+  sensor_detail.update({
+    description: deskripsi
+  }, {
+    where: {
+      id: id
+    }
+  }).then((result)=>{
+    if(result){
+      res.status(200).json({
+        data: {
+             status: 'success',
+             code: 200,
+             message: 'Berhasil mengubah data!',
+         }
+       });
+    }   
+  });
+}
+
+function updateSuhuHumadity(req, res) {
+  const { id, value } = req.body 
+  suhu_humadity.update({
+    value: value
+  }, {
+    where: {
+      id: id
+    }
+  }).then((result)=>{
+    if(result){
+      res.status(200).json({
+        data: {
+             status: 'success',
+             code: 200,
+             message: 'Berhasil mengubah data!',
+         }
+       });
+    }   
+  });
+    
+}
+
+module.exports = { 
+    createPhoneBook, 
+    deletePhoneBook, 
+    updatePhoneBook,
+    updateSensorDetail,
+    updateSuhuHumadity
+  }

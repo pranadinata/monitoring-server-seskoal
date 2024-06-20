@@ -6,7 +6,7 @@ import Layout from "@layout/index";
 import BreadcrumbItem from "@common/BreadcrumbItem";
 
 import PhoneBook from "@views/form-input/phone-book";
-import SetNotif from "@views/form-input/set-notif";
+import SuhuHumadity from "@views/form-input/suhu-humadity";
 import SensorDetail from "@views/form-input/sensor-detail";
 import Style from "styled-jsx/style";
 
@@ -24,7 +24,7 @@ const Dashboard = () => {
           <SensorDetail></SensorDetail>
           <Row>
             <PhoneBook></PhoneBook>
-            <SetNotif></SetNotif>
+            <SuhuHumadity></SuhuHumadity>
           </Row>
         
         </React.Fragment>

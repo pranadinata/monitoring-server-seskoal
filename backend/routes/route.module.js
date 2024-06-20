@@ -6,7 +6,7 @@ const router = express.Router();
 const arduinoService = require('../services/micro-controller/arduino.controller');
 const authService = require('../services/apps/auth.controller');
 const getDataService = require('../services/apps/getData.controller');
-const phoneBookService = require('../services/apps/phoneBook.controller');
+const crudService = require('../services/apps/crud.controller');
 
 
 router.get('/', (req, res)=> {
@@ -28,12 +28,20 @@ router.group('/apps', function (route) {
     //get data from db
     route.get('/phone-book/show', getDataService.getPhoneBook);
     route.get('/sensor-detail/show', getDataService.getSensorDetail);
-    
-    //crud 
-    route.post('/phone-book/create', phoneBookService.createPhoneBook);
-    route.post('/phone-book/delete', phoneBookService.deletePhoneBook);
-    route.post('/phone-book/update', phoneBookService.updatePhoneBook);
+    route.get('/suhu-humadity/show', getDataService.getSuhuHumadity);
 
+    
+    //crud phone book 
+    route.post('/phone-book/create', crudService.createPhoneBook);
+    route.post('/phone-book/delete', crudService.deletePhoneBook);
+    route.post('/phone-book/update', crudService.updatePhoneBook);
+
+
+    //update sensor detail
+    route.post('/sensor-detail/update', crudService.updateSensorDetail);
+
+    //update suhu humadity
+    route.post('/suhu-humadity/update', crudService.updateSuhuHumadity);
 
 
 });

@@ -1,6 +1,4 @@
-import BreadcrumbItem from "@common/BreadcrumbItem";
 
-import { affiliateWidget, affiliateData, topVisitorData } from "@data/index";
 import {
   Card,
   Col,
@@ -11,13 +9,12 @@ import {
   Modal,
   Form,
 } from "react-bootstrap";
-import Image from "next/image";
 import { useEffect, useState } from "react";
-// import Arduino from "@assets/images/application/img-user-cover-1.jpg";
-import avatar1 from "@assets/images/user/avatar-1.jpg";
 import Link from "next/link";
 import getDataService from "@services/setting/get-data.module";
+import PrivateCrud from "@services/setting/private-crud.module";
 import Arduino from "@assets/images/arduino/arduino.png";
+import Swal from 'sweetalert2';
 
 interface SensorDetailData {
   updatedAt: Date;
@@ -29,19 +26,32 @@ const sensorDetail = () => {
   const [SensorDetail, setSensorDetail] = useState<SensorDetailData[]>([]);
   const [show, setShow] = useState(false);
 
+  const [IdSensorDetail, setIdSensorDetail] = useState(null);
   const [NamaSensor, setNamaSensor] = useState("");
   const [DeskripsiSensor, setDeskripsiSensor] = useState("");
 
+  useEffect(() => {
+    getAllData();
+  }, []);
+
+  
   const handleClose = () => setShow(false);
   const handleShow = (item: any) => {
-    // console.log(item)
     setDeskripsiSensor(item.description);
     setNamaSensor(item.nama_sensor);
+    setIdSensorDetail(item.id);
+
     setShow(true);
   };
 
   const handleInputChange = (event: any) =>{
-      console.log(event.target.value)
+      setDeskripsiSensor(event.target.value);
+  }
+
+  const getAllData = () =>{
+    getDataService.getSensorDetail().then((result) => {
+      setSensorDetail(result.data);
+    });
   }
 
   const convertDate = (waktu: Date) => {
@@ -63,11 +73,33 @@ const sensorDetail = () => {
         const [month, day, year] = formattedDate.split('/');
         return `${day}/${month}/${year} ${time}`;
   };
-  useEffect(() => {
-    getDataService.getSensorDetail().then((result) => {
-      setSensorDetail(result.data);
+
+  const updateData = () => {
+    let data_input = {
+      id: IdSensorDetail,
+      deskripsi: DeskripsiSensor,
+
+    }
+    PrivateCrud.SensorDetailUpdate(data_input).then((result)=> {
+      if(result.data.data.code == 200){
+        Swal.fire({
+          icon: 'success',
+          title: 'Berhasil',
+          text: result.data.data.message,
+          timer: 1500,
+          showConfirmButton: false
+        }).then(() => {
+            getAllData();
+            setShow(false);
+        });
+      }
     });
-  }, []);
+
+
+  }
+
+ 
+
 
      
 
@@ -140,7 +172,7 @@ const sensorDetail = () => {
         </Modal.Body>
         <Modal.Footer>
           
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={()=> {updateData()}}>
            Perbaharui
           </Button>
         </Modal.Footer>
