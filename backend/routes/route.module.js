@@ -18,7 +18,7 @@ router.get('/', (req, res)=> {
 
 router.group('/whatsapp', function (route) {
     route.post('/get-temperature', arduinoService.getTemperature);
-    route.post('/send-notify', arduinoService.sendWhatsapp);
+    route.get('/send-notify', arduinoService.sendWhatsapp);
 });
 
 router.group('/apps', function (route) {

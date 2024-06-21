@@ -95,11 +95,15 @@ function processSendWhatsApp(phone, nama, curTemp, namaServer) {
 
 function sendWhatsapp() {
     let message = `Connected`;
-    PhoneBook.findAll({where: {status: true}}).then((element)=>{
-        client.sendMessage(`${element.no_hp}@c.us`, message).then((response) => {
-            console.log('berhasil');
-            // res.json('berhasil');
+    PhoneBook.findAll({where: {status: true}}).then((result)=>{
+        result.forEach(element => {
+            client.sendMessage(`${element.no_hp}@c.us`, message).then((response) => {
+                console.log('berhasil');
+                // res.json('berhasil');
+            });
+            
         });
+        
     });
     
 }
