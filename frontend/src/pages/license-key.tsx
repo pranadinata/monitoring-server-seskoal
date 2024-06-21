@@ -5,9 +5,9 @@ import { Card, Col, Row } from "react-bootstrap";
 import Layout from "@layout/index";
 import BreadcrumbItem from "@common/BreadcrumbItem";
 
-import PhoneBook from "@views/form-input/phone-book";
-import SetNotif from "@views/form-input/set-notif";
-import SensorDetail from "@views/form-input/sensor-detail";
+// import PhoneBook from "@views/form-input/phone-book";
+// import SetNotif from "@views/form-input/set-notif";
+// import SensorDetail from "@views/form-input/sensor-detail";
 
 const LicenseKey = () => {
   return (
