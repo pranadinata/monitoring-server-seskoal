@@ -32,6 +32,6 @@
     "uuid": "^9.0.1",
     "uuid4": "^2.0.3",
     "valid-url": "^1.0.9",
-    "whatsapp-web.js": "^1.18.4"
+    "whatsapp-web.js": "^1.25.0"
   }
 }

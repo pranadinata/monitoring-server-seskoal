@@ -112,7 +112,7 @@ const sensorDetail = () => {
               <Card className="user-card">
                 <Card.Body>
                   <div className="user-cover-bg">
-                    <img src={Arduino.src} alt="image" className="img-fluid" />
+                    {/* <img src={Arduino.src} alt="image" className="img-fluid" /> */}
                     <div className="cover-data">
                       <div className="d-inline-flex align-items-center"></div>
                     </div>

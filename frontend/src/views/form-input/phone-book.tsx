@@ -26,8 +26,6 @@ const PhoneBook = () => {
   const [NamaLengkap, setNamaLengkap] = useState(null);
   const [StatusNotif, setStatusNotif] = useState(false);
 
-
-
   
   const [show, setShow] = useState(false);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
@@ -152,7 +150,8 @@ const PhoneBook = () => {
 
   return (
     <>
-      <Col md={6} xl={8}>
+    <Row>
+    <Col md={12} xl={12}>
         <Card className="table-card">
           <Card.Header className="d-flex align-items-center justify-content-between">
             <h4>Daftar Penerima Notif</h4>
@@ -221,6 +220,8 @@ const PhoneBook = () => {
           </Card.Body>
         </Card>
       </Col>
+    </Row>
+      
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Tambah Data Kontak</Modal.Title>

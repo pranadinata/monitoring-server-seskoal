@@ -13,20 +13,23 @@ import Style from "styled-jsx/style";
 const Dashboard = () => {
   return (
     <>
-      <Style></Style>
-      <BreadcrumbItem mainTitle="Dashboard" subTitle="Home" />
+      
+      <BreadcrumbItem mainTitle="Dashboard" subTitle="" />
       <Row>
-        <Alert key="success" variant="success">
+        {/* <Alert key="success" variant="success">
           Alert whatsapp sedang mode ON !
-        </Alert>
+        </Alert> */}
 
         <React.Fragment>
-          <SensorDetail></SensorDetail>
-          <Row>
+          {/* <Row>
             <PhoneBook></PhoneBook>
             <SuhuHumadity></SuhuHumadity>
-          </Row>
-        
+          </Row> */}
+          {/* <PhoneBook></PhoneBook> */}
+          <SuhuHumadity></SuhuHumadity>
+          <SensorDetail></SensorDetail>
+          <PhoneBook></PhoneBook>
+
         </React.Fragment>
       </Row>
     </>

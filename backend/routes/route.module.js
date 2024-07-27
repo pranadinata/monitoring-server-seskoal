@@ -43,6 +43,10 @@ router.group('/apps', function (route) {
     //update suhu humadity
     route.post('/suhu-humadity/update', crudService.updateSuhuHumadity);
 
+    //get notifikasi
+    route.get('/count/notifikasi', getDataService.getCountNotif);
+
+
 
 });
 

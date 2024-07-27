@@ -1,5 +1,5 @@
 
-const { phone_book, notification , sensor_detail , suhu_humadity, set_notif} = require('../../database/models');
+const { phone_book, notification_v2 , sensor_detail , suhu_humadity, set_notif} = require('../../database/models');
 
 
 function getPhoneBook(req, res){
@@ -52,5 +52,22 @@ function getSuhuHumadity(req, res){
     });
 }
 
+function getCountNotif(req, res){
+    notification_v2.count()
+    .then(count => {
+        res.status(200).json({
+            data: {
+                 status: 'success',
+                 data: count,
+                 code: 200,
+                 message: 'Berhasil mengambil data!',
+             }
+           });
+    })
+    .catch(error => {
+        console.error('Error counting data:', error);
+    });
+}
 
-module.exports = { getPhoneBook, getSensorDetail, getSuhuHumadity }
+
+module.exports = { getPhoneBook, getSensorDetail, getSuhuHumadity , getCountNotif }

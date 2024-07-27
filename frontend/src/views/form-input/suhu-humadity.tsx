@@ -1,5 +1,6 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import {
+  Alert,
   Badge,
   Button,
   Card,
@@ -29,6 +30,9 @@ const SuhuHumadity = () => {
 
   const [ValueSuhuHumadity, setValueSuhuHumadity] = useState(null);
 
+  const [ValueNotifikasi, setValueNotifikasi] = useState(0);
+
+
   const handleClose = () => setShowTemperatureModal(false);
   const handleShow = (item: any) => {
     setIdSuhuHumadity(item.id)
@@ -40,12 +44,18 @@ const SuhuHumadity = () => {
 
   useEffect(() => {
     getAllData();
+    getCountDataNotif();
   }, []);
 
   const getAllData = () =>{
     getDataService.getSuhuHumadity().then((result) => {
       setSuhu_Humadity(result.data);
     });
+  }
+  const getCountDataNotif = () =>{
+      getDataService.getCountNotif().then((result)=>{
+        setValueNotifikasi(result.data);
+      });
   }
 
   const handleInputChange = (event: any) => {
@@ -74,32 +84,87 @@ const SuhuHumadity = () => {
   }
   return (
     <>
-      <Col sm={6} xl={4}>
-        <Card>
+      <Row>
+        <Col sm={4} xl={4}>
+          <Card style={{  height: '150px' }}>
+            <Card.Body>
+            <div className="d-flex align-items-center justify-content-between mb-2">
+                <p className="mb-0">Jumlah Notifikasi Whatsapp</p>
+              </div>
+              <h5>
+              <Alert variant={
+                ValueNotifikasi <= 300 ? 'success' : ValueNotifikasi <= 700 ? 'warning' : 'danger'
+              }> {ValueNotifikasi} / 1000 </Alert>
+             
+              </h5>
+
+            </Card.Body>
+
+          </Card>
+        </Col>
+        <Col sm={4} xl={4}>
+          <Card style={{  height: '150px' }}>
+            <Card.Body>
+              <div className="d-flex align-items-center justify-content-between mb-2">
+                <p className="mb-0">Max Suhu</p>
+                <button
+                  onClick={() => {
+                    handleShow(Suhu_Humadity[0]);
+                  }}
+                  className="btn btn-secondary"
+                >
+                  Edit
+                </button>
+              </div>
+              <h5 className="mb-0">
+                {Suhu_Humadity[0] !== undefined ? Suhu_Humadity[0].value : 0} °C
+              </h5>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col sm={4} xl={4}>
+          <Card style={{  height: '150px' }}>
+            <Card.Body>
+              <div className="d-flex align-items-center justify-content-between mb-2">
+                <p className="mb-0">Max Kelembapan</p>
+                <button
+                  onClick={() => {
+                    handleShow(Suhu_Humadity[1]);
+                  }}
+                  className="btn btn-secondary"
+                >
+                  Edit
+                </button>
+              </div>
+              <div className="d-flex align-items-center">
+                <h5 className="mb-0">
+                  {Suhu_Humadity[1] !== undefined ? Suhu_Humadity[1].value : 0}{" "}
+                  %H
+                </h5>
+              </div>
+            </Card.Body>
+          </Card>
+        </Col>
+        {/* <Col sm={4} xl={4}>
+        <Card bg="success">
           <Card.Body>
             <div className="d-flex align-items-center justify-content-between mb-2">
-              <p className="mb-0">Max Suhu</p>
-              <button onClick={()=> {handleShow(Suhu_Humadity[0])}} className="btn btn-secondary">Edit</button>
-            </div>
-            <h5 className="mb-0">{Suhu_Humadity[0] !== undefined ? Suhu_Humadity[0].value : 0 } °C</h5>
-          </Card.Body>
-        </Card>
-        <Card>
-          <Card.Body>
-            <div className="d-flex align-items-center justify-content-between mb-2">
-              <p className="mb-0">Max Kelembapan</p>
+              <p className="mb-0 text-black">Notifikasi</p>
               <button onClick={()=>{ handleShow(Suhu_Humadity[1]) }} className="btn btn-secondary">Edit</button>
             </div>
             <div className="d-flex align-items-center">
-            <h5 className="mb-0">{Suhu_Humadity[1] !== undefined ? Suhu_Humadity[1].value : 0 } %H</h5>
+              <h5 className="mb-0 text-black">
+                {ValueNotifikasi} / 1000
+              </h5>
             </div>
           </Card.Body>
         </Card>
-      </Col>
+      </Col> */}
+      </Row>
 
       <Modal show={ShowTemperatureModal} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Ubah {NamaSuhuHumadity } </Modal.Title>
+          <Modal.Title>Ubah {NamaSuhuHumadity} </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form.Group as={Col}>
@@ -109,19 +174,23 @@ const SuhuHumadity = () => {
               </strong>
             </Form.Label>
             <Form.Control
-              id={IdSuhuHumadity != null ? 'temperature' : 'kelembapan'}
+              id={IdSuhuHumadity != null ? "temperature" : "kelembapan"}
               type="number"
               required
               name="value_suhu_humadity"
-              value={ ValueSuhuHumadity !== null ? ValueSuhuHumadity : 0 }
+              value={ValueSuhuHumadity !== null ? ValueSuhuHumadity : 0}
               onChange={handleInputChange}
             />
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          
-          <Button variant="primary" onClick={()=> { updateData() }}>
-           Perbaharui
+          <Button
+            variant="primary"
+            onClick={() => {
+              updateData();
+            }}
+          >
+            Perbaharui
           </Button>
         </Modal.Footer>
       </Modal>
