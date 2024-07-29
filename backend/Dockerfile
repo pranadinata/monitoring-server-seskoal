@@ -1,4 +1,4 @@
-FROM node:20.13.0-alpine3.19
+FROM node:21.7.0-alpine3.20
 
 # Membuat direktori kerja
 RUN mkdir -p /opt/app/express
