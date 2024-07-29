@@ -87,26 +87,29 @@ function processSendWhatsApp(phone, nama, curTemp, namaServer) {
     //     attributes: ['foo', [sequelize.fn('COUNT', sequelize.col('hats')), 'n_hats'], 'bar'],
     //   });
     // return new Promise((resolve, reject) => {
-    client.sendMessage(`${phone}@c.us`, message).then((response) => {
-        if (response.id.fromMe) {
-            Notification.create({
-                whatsapp_chat_id: response._data.id.id,
-                nama_sensor: namaServer,
-                suhu_sensor: curTemp.suhu,
-                kelembapan_sensor: curTemp.kelembapan,
-                fromMe: true,
-                content: response._data.body,
-                type: response._data.type,
-                notify_name: nama,
-                from: response._data.from.user,
-                to: response._data.to.user,
-                whatsapp_chat_id_serialized: response._data.id._serialized
-            }).then(()=>{
-                console.log({message: 'success send to ' + nama + " dengan nomer "+ phone})
+        if(client){
+            client.sendMessage(`${phone}@c.us`, message).then((response) => {
+                if (response.id.fromMe) {
+                    Notification.create({
+                        whatsapp_chat_id: response._data.id.id,
+                        nama_sensor: namaServer,
+                        suhu_sensor: curTemp.suhu,
+                        kelembapan_sensor: curTemp.kelembapan,
+                        fromMe: true,
+                        content: response._data.body,
+                        type: response._data.type,
+                        notify_name: nama,
+                        from: response._data.from.user,
+                        to: response._data.to.user,
+                        whatsapp_chat_id_serialized: response._data.id._serialized
+                    }).then(()=>{
+                        console.log({message: 'success send to ' + nama + " dengan nomer "+ phone})
+                    });
+                    console.log('success send');
+                }
             });
-            console.log('success send');
         }
-    });
+    
     // });
 }
 
