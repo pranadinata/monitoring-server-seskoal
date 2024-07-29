@@ -6,11 +6,11 @@ import axios from 'axios';
 
 const GenerateQr = () => {
     const RestartService = async ()=>{
-            const AxiosInstance = await axios.post(process.env.NEXT_PUBLIC_SERVICE_API + "run-script");
+            // const AxiosInstance = await axios.post(process.env.NEXT_PUBLIC_SERVICE_API + "run-script");
     }
     const CheckConnection = async () => {
-        const AxiosInstance = await axios.post(process.env.NEXT_PUBLIC_BASE_API + "whatsapp/send-notify");
-        console.log('kesini');
+        const AxiosInstance = await axios.get(process.env.NEXT_PUBLIC_BASE_API + "whatsapp/send-notify");
+        console.log(AxiosInstance)
 
     }
     return (

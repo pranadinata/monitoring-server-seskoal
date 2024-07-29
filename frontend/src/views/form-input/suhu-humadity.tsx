@@ -30,7 +30,7 @@ const SuhuHumadity = () => {
 
   const [ValueSuhuHumadity, setValueSuhuHumadity] = useState(null);
 
-  const [ValueNotifikasi, setValueNotifikasi] = useState(0);
+  const [ValueNotifikasi, setValueNotifikasi] = useState(1200);
 
 
   const handleClose = () => setShowTemperatureModal(false);
@@ -54,7 +54,7 @@ const SuhuHumadity = () => {
   }
   const getCountDataNotif = () =>{
       getDataService.getCountNotif().then((result)=>{
-        setValueNotifikasi(result.data);
+        // setValueNotifikasi(result.data);
       });
   }
 
@@ -85,6 +85,8 @@ const SuhuHumadity = () => {
   return (
     <>
       <Row>
+        { ValueNotifikasi >= 1000 ? <Alert variant="danger" style={{ color: "white"}}>Batas maximum notifikasi telah lebih dari 1000, harap hubungi admin</Alert> : '' }
+        
         <Col sm={4} xl={4}>
           <Card style={{  height: '150px' }}>
             <Card.Body>
@@ -106,7 +108,7 @@ const SuhuHumadity = () => {
           <Card style={{  height: '150px' }}>
             <Card.Body>
               <div className="d-flex align-items-center justify-content-between mb-2">
-                <p className="mb-0">Max Suhu</p>
+                <p className="mb-0">Minimum Suhu</p>
                 <button
                   onClick={() => {
                     handleShow(Suhu_Humadity[0]);
@@ -126,7 +128,7 @@ const SuhuHumadity = () => {
           <Card style={{  height: '150px' }}>
             <Card.Body>
               <div className="d-flex align-items-center justify-content-between mb-2">
-                <p className="mb-0">Max Kelembapan</p>
+                <p className="mb-0">Minimum Kelembapan</p>
                 <button
                   onClick={() => {
                     handleShow(Suhu_Humadity[1]);

@@ -84,44 +84,67 @@ function processSendWhatsApp(phone, nama, curTemp, namaServer) {
     let message = `Data di alat ${namaServer} saat ini : \n Temperatur : *${curTemp.suhu}* °C \n Kelembapan : *${curTemp.kelembapan}* %H \n\n Segera cek ruangan server infolahta seskoal. \n\n -IOT Infolahta Seskoal-`;
 
 
+    Notification.findOne({
+        where: {to: phone },
+        order: [ [ 'createdAt', 'DESC' ]],
+    }).then((data_terakhir)=>{
+        Date.prototype.AddMinutes = function ( minutes ) {
+            minutes = minutes ? minutes : 0;
+            this.setMinutes( this.getMinutes() + minutes );
+            return this;
+        }
+        
+        let last_data = new Date(data_terakhir.createdAt);
+        last_data.AddMinutes(5);
+      
+        let now = new Date();
+
+        if(now >= last_data){
+            if(client){
+                client.sendMessage(`${phone}@c.us`, message).then((response) => {
+                    if (response.id.fromMe) {
+                        Notification.create({
+                            whatsapp_chat_id: response._data.id.id,
+                            nama_sensor: namaServer,
+                            suhu_sensor: curTemp.suhu,
+                            kelembapan_sensor: curTemp.kelembapan,
+                            fromMe: true,
+                            content: response._data.body,
+                            type: response._data.type,
+                            notify_name: nama,
+                            from: response._data.from.user,
+                            to: response._data.to.user,
+                            whatsapp_chat_id_serialized: response._data.id._serialized
+                        }).then(()=>{
+                            console.log({message: 'success send to ' + nama + " dengan nomer "+ phone})
+                        });
+                        console.log('success send');
+                    }
+                });
+            }
+        }else{
+            console.log('Belum lebih dari 5 menit')
+        }
+        
+    });
+
    
     // Model.findAll({
     //     attributes: ['foo', [sequelize.fn('COUNT', sequelize.col('hats')), 'n_hats'], 'bar'],
     //   });
     // return new Promise((resolve, reject) => {
-        if(client){
-            client.sendMessage(`${phone}@c.us`, message).then((response) => {
-                if (response.id.fromMe) {
-                    Notification.create({
-                        whatsapp_chat_id: response._data.id.id,
-                        nama_sensor: namaServer,
-                        suhu_sensor: curTemp.suhu,
-                        kelembapan_sensor: curTemp.kelembapan,
-                        fromMe: true,
-                        content: response._data.body,
-                        type: response._data.type,
-                        notify_name: nama,
-                        from: response._data.from.user,
-                        to: response._data.to.user,
-                        whatsapp_chat_id_serialized: response._data.id._serialized
-                    }).then(()=>{
-                        console.log({message: 'success send to ' + nama + " dengan nomer "+ phone})
-                    });
-                    console.log('success send');
-                }
-            });
-        }
+        
     
     // });
 }
 
-function sendWhatsapp() {
+function sendWhatsapp(req, res) {
     // console.log(client)
     let message = `Connected`;
     PhoneBook.findAll({where: {status: true}}).then((result)=>{
         result.forEach(element => {
             client.sendMessage(`${element.no_hp}@c.us`, message).then((response) => {
-                console.log('Berhasil Connected');
+                res.json('Berhasil Connected');
                 // res.json('berhasil');
             });
             
