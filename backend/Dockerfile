@@ -6,7 +6,7 @@ WORKDIR /opt/app/express
 
 # Menyalin dan menginstal dependensi npm
 COPY backend/package.json .
-RUN npm install
+RUN sudo npm install
 
 # Menambahkan library yang dibutuhkan oleh Puppeteer
 RUN apk update && apk add --no-cache \
