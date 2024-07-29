@@ -31,7 +31,7 @@ global.authed = false;
 // When the client is ready, run this code (only once)
 client.once('ready', async () => {
     try {
-        await arduinoService.sendWhatsapp();
+        // await arduinoService.sendWhatsapp();
         console.log('Client is ready!');
     } catch (error) {
         console.error('Error during ready event:', error);
