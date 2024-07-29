@@ -2,3 +2,4 @@
 /database/config/*
 .wwebjs_auth
 .wwebjs_cache
+database/config/config.json
