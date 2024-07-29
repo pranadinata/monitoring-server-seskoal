@@ -123,7 +123,7 @@ function processSendWhatsApp(phone, nama, curTemp, namaServer) {
                 });
             }
         }else{
-            console.log('Belum lebih dari 5 menit')
+            console.log('Belum lebih dari 5 menit mengirim ke no '+ phone)
         }
         
     });
