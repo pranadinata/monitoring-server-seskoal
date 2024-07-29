@@ -44,7 +44,9 @@ function getTemperature(req, res) {
                     .then(count => {
                         console.log(`Total count: ${count}`);
                         if(count < 1000){
-                            processSendWhatsApp(element.no_hp, element.nama, currentTemp, server_name);
+                            if(client){
+                                processSendWhatsApp(element.no_hp, element.nama, currentTemp, server_name);
+                            }
                             res.json('Berhasil mengirim Pesan suhu');
                         }else{
                             res.json('Gagal Mengirim Pesan');
