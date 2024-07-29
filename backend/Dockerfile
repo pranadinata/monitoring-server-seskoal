@@ -8,21 +8,21 @@ WORKDIR /opt/app/express
 COPY backend/package.json .
 RUN npm install
 
-# Menambahkan library yang dibutuhkan oleh Puppeteer
-RUN apk update && apk add --no-cache \
-    chromium \
-    nss \
-    freetype \
-    freetype-dev \
-    harfbuzz \
-    ca-certificates \
-    ttf-freefont \
-    nodejs \
-    yarn
+# # Menambahkan library yang dibutuhkan oleh Puppeteer
+# RUN apk update && apk add --no-cache \
+#     chromium \
+#     nss \
+#     freetype \
+#     freetype-dev \
+#     harfbuzz \
+#     ca-certificates \
+#     ttf-freefont \
+#     nodejs \
+#     yarn
 
-# Menyetel variable environment untuk Chromium dan Puppeteer
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
-    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+# # Menyetel variable environment untuk Chromium dan Puppeteer
+# ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
+#     PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
 # Menyalin seluruh file backend
 COPY backend /opt/app/express/
