@@ -54,7 +54,7 @@ const SuhuHumadity = () => {
   }
   const getCountDataNotif = () =>{
       getDataService.getCountNotif().then((result)=>{
-        // setValueNotifikasi(result.data);
+        setValueNotifikasi(result.data);
       });
   }
 
