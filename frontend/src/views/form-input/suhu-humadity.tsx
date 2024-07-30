@@ -30,7 +30,7 @@ const SuhuHumadity = () => {
 
   const [ValueSuhuHumadity, setValueSuhuHumadity] = useState(null);
 
-  const [ValueNotifikasi, setValueNotifikasi] = useState(1200);
+  const [ValueNotifikasi, setValueNotifikasi] = useState(0);
 
 
   const handleClose = () => setShowTemperatureModal(false);
