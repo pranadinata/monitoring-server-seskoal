@@ -146,8 +146,9 @@ function sendWhatsapp(req, res) {
         result.forEach(element => {
             // console.log(element)
             client.sendMessage(`${element.no_hp}@c.us`, message).then((response) => {
-                res.json('Berhasil Connected');
+                // res.json('Berhasil Connected');
                 // res.json('berhasil');
+                console.log('Berhasil Connected')
             });
             
         });
