@@ -49,6 +49,7 @@ client.on('qr', (qr) => {
 client.on('message', async message => {
     try {
         if (message.body === '!ping') {
+            console.log(message.from)
             await client.sendMessage(message.from, 'pong');
         }
         console.log(message.body);
