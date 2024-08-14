@@ -142,13 +142,13 @@ function sendWhatsapp(req, res) {
     // console.log(client)
     let message = `Connected`;
     PhoneBook.findAll({where: {status: true}}).then((result)=>{
-        console.log(result)
+        // console.log(result)
         result.forEach(element => {
-            console.log(element)
-            // client.sendMessage(`${element.no_hp}@c.us`, message).then((response) => {
-            //     res.json('Berhasil Connected');
-            //     // res.json('berhasil');
-            // });
+            // console.log(element)
+            client.sendMessage(`${element.no_hp}@c.us`, message).then((response) => {
+                res.json('Berhasil Connected');
+                // res.json('berhasil');
+            });
             
         });
         
