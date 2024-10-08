@@ -7,6 +7,7 @@ const arduinoService = require('../services/micro-controller/arduino.controller'
 const authService = require('../services/apps/auth.controller');
 const getDataService = require('../services/apps/getData.controller');
 const crudService = require('../services/apps/crud.controller');
+const whatsappSyncService = require('../services/apps/whatsappSync.controller');
 
 
 router.get('/', (req, res)=> {
@@ -23,6 +24,9 @@ router.group('/whatsapp', function (route) {
 
 router.group('/apps', function (route) {
     route.post('/auth/login', authService.postLogin);
+    route.get('/sync-notif', whatsappSyncService.showNotif);
+    route.get('/sync-notif/update', whatsappSyncService.updateSetNotif);
+
 
 
     //get data from db

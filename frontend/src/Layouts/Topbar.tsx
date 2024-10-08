@@ -56,7 +56,7 @@ const TopBar = ({ handleOffcanvasToggle, changeThemeMode, toogleSidebarHide, too
         setDropdownOpen(false);
     };
     const LogoutApps = () => {
-       console.log('masuk kesini');
+    //    console.log('masuk kesini');
 
         deleteCookie('monitoring-server-infolahta');
         router.push("/login");

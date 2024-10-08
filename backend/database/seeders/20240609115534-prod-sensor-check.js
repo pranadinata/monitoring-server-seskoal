@@ -7,7 +7,6 @@ module.exports = {
       id_sensor: 1,
       temperature: 80,
       kelembapan: 50,
-      password: hash,
       createdAt: new Date(),
       updatedAt: new Date()
     },
@@ -15,21 +14,18 @@ module.exports = {
       id_sensor: 2,
       temperature: 30,
       kelembapan: 50,
-      password: hash,
       createdAt: new Date(),
       updatedAt: new Date()
     },{
       id_sensor: 3,
       temperature: 40,
       kelembapan: 50,
-      password: hash,
       createdAt: new Date(),
       updatedAt: new Date()
     },{
       id_sensor: 1,
       temperature: 80,
       kelembapan: 40,
-      password: hash,
       createdAt: new Date(),
       updatedAt: new Date()
     },

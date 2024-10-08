@@ -18,6 +18,7 @@ type AppPropsWithLayout = AppProps & {
 const MyApp: any = ({ Component, pageProps, ...rest }: AppPropsWithLayout) => {
   const { store } = wrapper.useWrappedStore(rest);
   const getLayout = Component.getLayout || ((page) => page);
+  
 
   return (
     <>

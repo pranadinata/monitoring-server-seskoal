@@ -22,8 +22,8 @@ global.client = new Client({
     puppeteer: {
         args: ['--no-sandbox', '--disable-setuid-sandbox'],
     },
-    // authStrategy: new LocalAuth()
-    authStrategy: new NoAuth()
+    authStrategy: new LocalAuth()
+    // authStrategy: new NoAuth()
 });
 
 global.authed = false;

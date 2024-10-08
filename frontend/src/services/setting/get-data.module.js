@@ -20,6 +20,11 @@ const getCountNotif = async () => {
     return response.data.data
 }
 
+const getSetNotif =  async () => {
+    const response = await axios.get(process.env.NEXT_PUBLIC_BASE_API + 'apps/sync-notif');
+    return response.data.data
+}
+
 const GetDataService = {
     getPhoneBook,
     getSensorDetail,

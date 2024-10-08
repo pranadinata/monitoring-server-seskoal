@@ -8,8 +8,6 @@
     "start": "next start -p 3100",
     "lint": "next lint"
   },
-
-
   "dependencies": {
     "@reduxjs/toolkit": "^2.1.0",
     "@south-paw/react-vector-maps": "^3.2.0",
