@@ -6,7 +6,6 @@ const {
     suhu_humadity: SuhuHumadity,
     set_notif: SetNotif,
     sensor_check: SensorCheck,
-    sensor_check_backup: SensorCheckBackup
 } = require('../../database/models');
 
 
@@ -28,9 +27,6 @@ function getTemperature(req, res) {
         let server_name = req.body.Id
         try {
             processSaveData(server_name, currentTemp.suhu, currentTemp.kelembapan);
-            processSaveDataBackup(server_name, currentTemp.suhu, currentTemp.kelembapan);
-
-
         }catch (e) {
             //
         }
@@ -38,7 +34,7 @@ function getTemperature(req, res) {
         if (req.body.Temperature >= result[0].value || req.body.Kelembapan >= result[1].value) {
            
 
-            // console.log('lebih besar');
+            
             let notif_confirmation = await SetNotif.findOne({
                 where: {
                     id: 1
@@ -88,15 +84,6 @@ function processSaveData(sensor_id, suhu, kelembapan) {
         kelembapan: kelembapan,
     }).then(() => {
         console.log({message: 'success save db'})
-    });
-}
-function processSaveDataBackup(sensor_id, suhu, kelembapan) {
-    SensorCheckBackup.create({
-        id_sensor: sensor_id,
-        temperature: suhu,
-        kelembapan: kelembapan,
-    }).then(() => {
-        console.log({message: 'success save db backup'})
     });
 }
 

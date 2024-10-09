@@ -8,13 +8,13 @@ const cron = require('node-cron');
 const { table } = require('console');
 
 // Menjalankan cron job setiap menit
-cron.schedule('0 2 */2 * *', async () => {
+cron.schedule('0 1 * * 0', async () => {
 //   console.log('Cron job dijalankan setiap menit:', new Date());
   try {
     // Menggunakan truncate untuk mengosongkan tabel User
     await db.SensorCheck.truncate();
     await db.CronJobs.create({ execute: 'Truncate', table: 'sensor_checks' });
-    console.log('Cron job berhasil dijalankan setiap 2 hari pada jam 2 pagi:', new Date())
+    console.log('Cron job berhasil dijalankan setiap hari Minggu jam 1 pagi:', new Date());
     
   } catch (error) {
     console.error('Error saat truncate:', error);
