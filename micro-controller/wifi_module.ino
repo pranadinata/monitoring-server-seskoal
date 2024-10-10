@@ -2,13 +2,10 @@
 #include <ESP8266HTTPClient.h>
 #include <WiFiClient.h>
 
-// const char *ssid = "PROLiNK_PRC3801_9F80";
-// const char *password = "prolink12345";
-const char *id = ""
-const char *name = ""
-const char *ssid = "Dragon_Fly";
-const char *password = "yesaya29";
-const char *host = "http://192.168.194.34:3300/whatsapp/get-temperature";
+const char *id = "1";
+const char *ssid = "IOT-INFOLAHTA";
+const char *password = "infolahta08!";
+const char *host = "http://iotinfolahta.local:3300/whatsapp/get-temperature";
 
 WiFiClient wifiClient;
 HTTPClient http;
@@ -38,31 +35,28 @@ void loop() {
 void processSensorData(String data) {
   int tempIndex = data.indexOf("Temperature : ");
   int humidityIndex = data.indexOf("|Humidity : ");
-  int endOfLineIndex = data.indexOf('\n', humidityIndex);
+  int endOfLineIndex = data.length(); 
 
   if (tempIndex >= 0 || humidityIndex >= 0) {
     // Extract temperature
     String tempString = data.substring(tempIndex + 14, humidityIndex);
     float temperature = tempString.toFloat();
 
-    // Extract humidity
-    String humidityString = data.substring(humidityIndex + 14, endOfLineIndex);
+      // Extract humidity
+    String humidityString = data.substring(humidityIndex + 12, endOfLineIndex);
     float humidity = humidityString.toFloat();
+
 
     http.begin(wifiClient, host);
     http.addHeader("Content-Type", "application/json");
-
-    String httpRequestData = "{
-            \"Id\":" + String(id) +",
-            \"Name\":" + String(name) +",
-            \"Temperature\":" + String(humidity) +",
-            \"Kelembapan\":" + String(humidity) +",
-        }";
+    
+    String httpRequestData = "{\"Id\":" + String(id) + ",\"Temperature\":" + String(temperature) + ",\"Kelembapan\":" + String(humidity) + "}";
 
     int httpResponseCode = http.POST(httpRequestData);
 
     if (httpResponseCode > 0) {
         String response = http.getString();
+        Serial.println(httpRequestData);
         Serial.println(response);
     } else {
         Serial.print("Error on sending POST: ");
@@ -70,10 +64,6 @@ void processSensorData(String data) {
     }
     
     http.end();
-    delay(5000);
+    delay(10000); // Delay 10 Detik
   }
 }
-
-
-
-
