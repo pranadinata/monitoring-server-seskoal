@@ -15,10 +15,24 @@ module.exports = (sequelize, DataTypes) => {
   }
   sensor_detail.init({
     nama_sensor: DataTypes.STRING,
-    description: DataTypes.TEXT
+    description: DataTypes.TEXT,
+    created_at: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW
+    },
+    updated_at: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW
+    }
   }, {
     sequelize,
     modelName: 'sensor_detail',
+    underscored: true,  // This ensures snake_case for column names
+    timestamps: true,   // Enables created_at and updated_at fields
+    createdAt: 'created_at',  // Map Sequelize's createdAt to created_at
+    updatedAt: 'updated_at'   // Map Sequelize's updatedAt to updated_at
   });
   return sensor_detail;
 };

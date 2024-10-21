@@ -17,7 +17,7 @@
     "username": "seskoal",
     "password": "seskoal@2019password",
     "database": "monitoring_server_seskoal",
-    "host": "172.16.10.16",
+    "host": "10.1.38.64",
     "dialect": "postgres"
   }
 }
