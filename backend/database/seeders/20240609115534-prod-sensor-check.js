@@ -7,27 +7,27 @@ module.exports = {
       id_sensor: 1,
       temperature: 80,
       kelembapan: 50,
-      createdAt: new Date(),
-      updatedAt: new Date()
+      created_at: new Date(),
+      updated_at: new Date()
     },
     {
       id_sensor: 2,
       temperature: 30,
       kelembapan: 50,
-      createdAt: new Date(),
-      updatedAt: new Date()
+      created_at: new Date(),
+      updated_at: new Date()
     },{
       id_sensor: 3,
       temperature: 40,
       kelembapan: 50,
-      createdAt: new Date(),
-      updatedAt: new Date()
+      created_at: new Date(),
+      updated_at: new Date()
     },{
       id_sensor: 1,
       temperature: 80,
       kelembapan: 40,
-      createdAt: new Date(),
-      updatedAt: new Date()
+      created_at: new Date(),
+      updated_at: new Date()
     },
     
     ], {});
