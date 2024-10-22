@@ -17,7 +17,7 @@ import Arduino from "@assets/images/arduino/arduino.png";
 import Swal from 'sweetalert2';
 
 interface SensorDetailData {
-  updatedAt: Date;
+  updated_at: Date;
   id: number;
   nama_sensor: string;
   description: string;
@@ -123,7 +123,7 @@ const sensorDetail = () => {
                       <h4 className="mb-1">{item?.nama_sensor}</h4>
                       <p className="text-muted text-md mb-0">
                         Terakhir di update :
-                        <Link href="#" className="text-primary"> { convertDate(item?.updatedAt) }</Link>
+                        <Link href="#" className="text-primary"> { convertDate(item?.updated_at) }</Link>
                       </p>
                     </div>
                     <div className="flex-shrink-0">
